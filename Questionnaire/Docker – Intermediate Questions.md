@@ -97,13 +97,22 @@ d. Best for full OS isolation
 
 ✅ In short:
 
-Multi-stage builds → smaller images
+Multi-stage builds → smaller images 
+
 Optimize size → alpine, cleanup, cache
+
 Networking → bridge/host/overlay
+
 Logs → docker logs
+
 Monitoring → docker stats, Prometheus
+
 Persistence → volumes/bind mounts
+
 Isolation → namespaces + cgroups
+
 Security risks → root, untrusted images, open ports
+
 Build cache → speeds up builds
+
 Docker vs VM → lightweight vs heavyweight
