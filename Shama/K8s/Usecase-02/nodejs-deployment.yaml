@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodejs-frontend
+  template:
+    metadata:
+      labels:
+        app: nodejs-frontend
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+    spec:
+      containers:
+      - name: nodejs
+        image: vchenna/nodejs-frontend:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: app-config
+        - secretRef:
+            name: mongodb-secret
+        resources:
+          limits: 
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+            
+
