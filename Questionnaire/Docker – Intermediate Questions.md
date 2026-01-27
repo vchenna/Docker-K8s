@@ -45,7 +45,7 @@ Advanced: We can use tools like Prometheus, Grafana, or Docker Desktop dashboard
 Use Volumes or Bind mounts.
 Containers are ephemeral (data disappears when stopped), so persistent storage is needed for databases or files.
 
-8. Difference between bind mounts and volumes
+8. Difference between bind mounts and volumes \n
 Bind Mounts:
 a. Maps a host directory into container
 b. Tied to host filesystem
@@ -116,3 +116,4 @@ Security risks → root, untrusted images, open ports
 Build cache → speeds up builds
 
 Docker vs VM → lightweight vs heavyweight
+
