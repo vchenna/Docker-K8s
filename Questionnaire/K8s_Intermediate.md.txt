@@ -1,0 +1,140 @@
+Kubernetes – Intermediate Questions:
+
+1. Differences between NodePort, ClusterIP, and LoadBalancer
+
+ClusterIP - Default service type that exposes the service internally within the cluster via a virtual IP.
+NodePort - Exposes the service externally by opening a port (30000–32767) on every node; traffic is forwarded to the service.
+LoadBalancer - Provisions a cloud provider load balancer and forwards external traffic to NodePort/ClusterIP services.
+
+
+2. What is a StatefulSet and where is it used?
+StatefulSet manages stateful applications by providing stable network identities, persistent storage, and ordered deployment, scaling, and deletion.
+
+Used for:
+
+Distributed databases (Cassandra, MongoDB)
+Stateful apps requiring persistent volumes
+Applications needing predictable Pod naming
+
+
+3. What is a DaemonSet? Give use cases.
+A DaemonSet ensures that one instance of a Pod runs on all or selected nodes.
+
+Use cases:
+
+Node-level log collectors (Fluentd, Filebeat)
+Monitoring agents (Prometheus Node Exporter)
+Storage/volume plugins
+Network plugins (CNI)
+
+
+4. What is Ingress and why is it used?
+Ingress is an API object providing layer 7 (HTTP/HTTPS) routing to expose services outside the cluster.
+It uses an Ingress Controller and supports:
+
+a. Path-based routing
+b. Host-based routing
+c. TLS termination
+d. Load balancing rules
+
+
+5. What is a ServiceAccount?
+A ServiceAccount is an identity used by Pods to authenticate to the Kubernetes API.
+It provides:
+
+API access credentials
+Role-based access controls (RBAC)
+Token mounting for secure communication
+
+
+6. Explain Taints and Tolerations.
+
+Taints are applied to nodes to repel certain pods.
+Tolerations are applied to pods to allow scheduling on nodes with matching taints.
+
+They control where pods are allowed or not allowed to run.
+
+7. What is node affinity and anti-affinity?
+
+Node Affinity: Schedules pods on nodes that match specified labels (preferred/required).
+Pod Anti-affinity: Prevents pods from being scheduled on the same node as certain other pods to improve redundancy.
+
+Used for:
+
+Workload placement optimization
+High availability
+Hardware-specific scheduling
+
+
+8. What is the Horizontal Pod Autoscaler (HPA)?
+HPA automatically scales the number of Pod replicas based on metrics such as:
+
+CPU utilization
+Memory usage
+Custom metrics
+
+It continuously monitors metrics and adjusts replica counts to maintain performance.
+
+9. How does Kubernetes perform rolling updates?
+Rolling updates in a Deployment replace Pods incrementally by:
+
+Creating new Pods with the updated version
+Gradually terminating old Pods
+Ensuring the app remains available (controlled by maxUnavailable and maxSurge settings)
+
+Supports rollback to previous versions.
+
+10. What is a CronJob?
+CronJob creates Jobs on a defined schedule using cron expressions.
+Used for:
+
+Periodic tasks
+Backups
+Report generation
+Cleanup operations
+
+
+11. How does the Kubernetes Scheduler work?
+The scheduler assigns Pods to nodes based on:
+
+Resource requests
+Node capacity
+Taints and tolerations
+Affinity/anti-affinity rules
+Node readiness
+Custom scheduling policies
+
+It scores eligible nodes and selects the optimal node for Pod placement.
+
+12. What happens when a Pod crashes?
+
+The kubelet restarts the container based on its restartPolicy.
+If part of a Deployment or ReplicaSet:
+The controller creates a new Pod to maintain the desired replica count.
+Failed Pods may be rescheduled on another node if the node becomes unhealthy.
+
+
+13. How do requests and limits work in Kubernetes?
+
+Requests: Minimum CPU/memory guaranteed to a Pod; used by scheduler for placement.
+Limits: Maximum allowed CPU/memory; exceeding memory limit results in OOMKill.
+
+Enforces resource fairness and avoids node overloading.
+
+14. What is a sidecar container?
+A sidecar is a secondary container running inside the same Pod as the main container.
+It supports the primary container by providing:
+
+Logging
+Proxying (Envoy/Istio)
+Data synchronization
+Configuration reloaders
+
+
+15. What is minikube and when is it useful?
+minikube is a lightweight tool to run Kubernetes locally using VirtualBox, Docker, or other drivers.
+Useful for:
+
+Learning and experimentation
+Development and testing
+Trying Kubernetes features before deploying to production
